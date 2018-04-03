@@ -27,12 +27,18 @@ Our class distillery
     - RecipeId
     - DateCreated
     - DateBarrelled
-    - DateBottled
     - NumberOfBarrels
+    - DateBottled
+    - NumberOfBottles
     - Cooker
+    - PricePerBottle
+    - NumberOfBottlesLeft
 
 - [ ] Orders:
     - Id
     - BatchId
     - NumberOfBottles
-    - 
+    - DateOfOrder
+    - CustomerId
+    
+- [ ] 
