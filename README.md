@@ -28,4 +28,11 @@ Our class distillery
     - DateCreated
     - DateBarrelled
     - DateBottled
+    - NumberOfBarrels
     - Cooker
+
+- [ ] Orders:
+    - Id
+    - BatchId
+    - NumberOfBottles
+    - 
