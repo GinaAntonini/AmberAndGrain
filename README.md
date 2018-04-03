@@ -41,4 +41,3 @@ Our class distillery
     - DateOfOrder
     - CustomerId
     
-- [ ] 
