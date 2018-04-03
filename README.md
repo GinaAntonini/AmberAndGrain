@@ -2,7 +2,6 @@
 Our class distillery
 
 - [ ] Create Recipe
-- [ ] Harvest Grain
 - [ ] Mash
 - [ ] Distill
 - [ ] Barrel
@@ -11,3 +10,22 @@ Our class distillery
 - [ ] Bottle
 - [ ] Sell
     - How many bottles
+
+**Data**
+
+- [ ] Recipes:
+    - Id
+    - Name
+    - PercentWheat
+    - PercentCorn
+    - BarrelAge
+    - BarrelMaterial
+    - Creator
+    
+- [ ] Batch:
+    - Id
+    - RecipeId
+    - DateCreated
+    - DateBarrelled
+    - DateBottled
+    - Cooker
