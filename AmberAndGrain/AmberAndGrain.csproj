@@ -96,8 +96,10 @@
     </Compile>
     <Compile Include="Models\AddBatchDto.cs" />
     <Compile Include="Models\BatchStatus.cs" />
+    <Compile Include="Models\MashBatchResults.cs" />
     <Compile Include="Models\RecipeDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\BatchMasher.cs" />
     <Compile Include="Services\BatchRepository.cs" />
     <Compile Include="Services\RecipeRepository.cs" />
   </ItemGroup>

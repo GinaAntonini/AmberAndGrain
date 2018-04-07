@@ -7,7 +7,6 @@ using System.Web.Http;
 using AmberAndGrain.Models;
 using AmberAndGrain.Services;
 
-
 namespace AmberAndGrain.Controllers
 {
     [RoutePrefix("api/batches")]
@@ -24,32 +23,31 @@ namespace AmberAndGrain.Controllers
                 return Request.CreateResponse(HttpStatusCode.Created);
             }
 
-            return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, "no it not work");
+            return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, "Sorry about your luck, batch");
         }
 
         [Route("{batchId}/mash"), HttpPatch]
         public HttpResponseMessage MashBatch(int batchId)
         {
-            var repository = new BatchRepository();
-            Batch batch;
+            var batchMasher = new BatchMasher();
+            var mashMe = batchMasher.MashBatch(batchId);
 
-            try
+            switch (mashMe)
             {
-                batch = repository.Get(batchId);
-
+                case UpdateStatusResults.NotFound:
+                    return Request.CreateErrorResponse(HttpStatusCode.NotFound, "batchId does not exist");
+                case UpdateStatusResults.Unsuccessful:
+                    return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, "I suk");
+                case UpdateStatusResults.Success:
+                    return Request.CreateResponse(HttpStatusCode.OK);
+                case UpdateStatusResults.ValidationFailure:
+                    return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "U suk");
+                default:
+                    return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "Nathan Sucks");
             }
-            catch (Exception)
-            {
-                return Request.CreateErrorResponse(HttpStatusCode.NotFound, "batchId does not exist");
-            }
-            if (batch.Status == BatchStatus.Created) 
-            {
-                batch.Status = BatchStatus.Mashed;
-                var result = repository.Update(batch);
-                return result ? Request.CreateResponse(HttpStatusCode.OK) : Request.CreateErrorResponse(HttpStatusCode.InternalServerError, "u suk");
-            }
-
-            return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "U suk");
         }
+
+
+
     }
 }
