@@ -33,5 +33,16 @@ namespace AmberAndGrain.Services
                 return numberCreated == 1;
             }
         }
+
+        internal List<RecipeDTO> GetAll()
+        {
+            using (var db = new SqlConnection(ConfigurationManager.ConnectionStrings["AmberAndGrain"].ConnectionString))
+            {
+                db.Open();
+
+                var result = db.Query<RecipeDTO>("Select * from Recipes").ToList();
+                return result;
+            }
+        }
     }
 }
